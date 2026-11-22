@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#091321">
+<title>Ultimate Sales Hub | Elite</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
+
+:root{
+ --bg:#091321;--surface:#101e30;--surface2:#15263b;
+ --card:#14243a;--line:#263c55;--text:#edf5ff;
+ --muted:#91a6bf;--accent:#54e0b5;--blue:#55b9ff;
+ --red:#ff7185;--yellow:#ffc66d;--green:#45d6a0;
+ --shadow:0 12px 35px #0004;--radius:20px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+ margin:0;background:
+ radial-gradient(ellipse at 90% 0%,#153c4c 0,transparent 32%),
+ radial-gradient(ellipse at 0% 45%,#14283e 0,transparent 35%),
+ var(--bg);
+ color:var(--text);font-family:'Cairo',sans-serif;
+ min-height:100vh;padding-bottom:100px;
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible{
+ outline:2px solid var(--blue);outline-offset:2px
+}
+.app{max-width:1100px;margin:auto;padding:15px}
+.topbar{
+ display:flex;justify-content:space-between;align-items:center;
+ gap:10px;margin-bottom:18px
+}
+.brand{display:flex;align-items:center;gap:11px;min-width:0}
+.logo{
+ width:49px;height:49px;flex-shrink:0;border-radius:17px;
+ display:grid;place-items:center;font-size:25px;font-weight:900;
+ color:#082033;background:linear-gradient(135deg,#6df0c1,#49b8ff);
+ box-shadow:0 8px 25px #39c9bb40
+}
+.brand h1{font-size:17px;margin:0;font-weight:900;line-height:1.4}
+.brand p{font-size:11px;color:var(--muted);margin:2px 0 0}
+.top-actions{display:flex;gap:7px}
+.icon-btn{
+ width:42px;height:42px;border:1px solid var(--line);
+ background:var(--surface);color:var(--text);
+ border-radius:13px;font-size:18px
+}
+.status-line{
+ display:flex;align-items:center;gap:6px;
+ color:var(--green);font-size:11px;margin-top:3px
+}
+.dot{width:7px;height:7px;background:var(--green);border-radius:50%}
+
+.hero{
+ position:relative;overflow:hidden;padding:22px 19px;
+ border-radius:24px;margin-bottom:15px;
+ background:linear-gradient(120deg,#123c4b,#17405b 55%,#18304e);
+ border:1px solid #326078;
+ box-shadow:0 15px 35px #0003;
+}
+.hero:after{
+ content:"";position:absolute;width:180px;height:180px;
+ border-radius:50%;background:#66e5c015;
+ left:-45px;top:-75px
+}
+.hero-content{position:relative;z-index:1}
+.hero h2{font-size:23px;margin:0 0 5px;font-weight:900}
+.hero p{font-size:12px;color:#c4dce9;margin:0;line-height:1.8}
+.hero-bottom{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:15px}
+.date-chip{
+ background:#ffffff12;border:1px solid #ffffff20;
+ padding:7px 11px;border-radius:30px;font-size:11px;color:#e4f5ff
+}
+.hero-tag{font-size:11px;color:#a8f7d7}
+.hero-icon{position:absolute;left:17px;top:20px;font-size:48px;opacity:.9}
+
+.section-title{
+ display:flex;justify-content:space-between;align-items:center;
+ margin:19px 2px 11px;gap:10px
+}
+.section-title h2{font-size:16px;margin:0;font-weight:900}
+.section-title small{font-size:11px;color:var(--muted)}
+
+.stats{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:10px;margin-bottom:15px
+}
+.stat{
+ position:relative;overflow:hidden;
+ padding:14px;border:1px solid var(--line);
+ border-radius:18px;
+ background:linear-gradient(145deg,#172b42,#101d30);
+ box-shadow:var(--shadow);min-width:0
+}
+.stat-top{display:flex;justify-content:space-between;align-items:center}
+.stat-icon{
+ width:36px;height:36px;border-radius:12px;
+ display:grid;place-items:center;font-size:19px;background:#ffffff0c
+}
+.stat-label{font-size:11px;color:var(--muted);margin-top:10px}
+.stat-value{font-size:23px;font-weight:900;direction:ltr;text-align:right;overflow-wrap:anywhere}
+.stat-hint{font-size:10px;color:var(--accent);margin-top:3px}
+
+.panel{
+ background:linear-gradient(145deg,#13243a,#101c2e);
+ border:1px solid var(--line);border-radius:20px;
+ padding:15px;margin-bottom:13px;box-shadow:var(--shadow);
+ min-width:0
+}
+.panel-head{
+ display:flex;justify-content:space-between;align-items:center;
+ gap:9px;margin-bottom:13px
+}
+.panel-head h3{font-size:15px;margin:0;font-weight:900}
+.muted{font-size:11px;color:var(--muted);line-height:1.8}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+.target-numbers{display:flex;justify-content:space-between;gap:10px;font-size:12px}
+.target-numbers strong{color:var(--accent);font-size:14px}
+.progress{
+ height:12px;background:#263c51;border-radius:30px;
+ overflow:hidden;margin:13px 0 8px
+}
+.progress span{
+ display:block;height:100%;width:0;border-radius:30px;
+ background:linear-gradient(90deg,#45d9a6,#48b9ff);
+ transition:width .4s
+}
+.target-caption{font-size:11px;color:var(--muted)}
+
+.field{margin-bottom:12px;min-width:0}
+.field label{
+ display:block;font-size:12px;color:#aabbd0;
+ font-weight:700;margin-bottom:6px
+}
+.field input,.field select,.field textarea,.search{
+ width:100%;min-width:0;background:#091625;
+ border:1px solid #2a405a;border-radius:12px;
+ padding:12px;color:var(--text);font-size:14px;
+ outline:none;transition:.2s
+}
+.field input:focus,.field select:focus,.field textarea:focus,.search:focus{
+ border-color:var(--blue);box-shadow:0 0 0 3px #55b9ff18
+}
+.field input::placeholder,.field textarea::placeholder{color:#657b94}
+.field textarea{min-height:85px;resize:vertical}
+.field select{appearance:auto}
+.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 11px}
+.formgrid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.btn{
+ border:1px solid var(--line);border-radius:12px;
+ background:#1a3048;color:var(--text);
+ padding:10px 14px;font-size:12px;font-weight:800;
+ min-height:42px;transition:.2s
+}
+.btn:active{transform:scale(.97)}
+.btn.primary{
+ background:linear-gradient(110deg,#52dfa9,#43b9e8);
+ border:0;color:#062b30
+}
+.btn.danger{color:#ff9aa8;border-color:#743b4b;background:#39202c}
+.btn.ghost{background:transparent}
+.btn.small{min-height:34px;padding:6px 10px;font-size:11px}
+.btn.full{width:100%}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+
+.metricline{
+ display:flex;justify-content:space-between;align-items:center;
+ gap:10px;padding:10px 0;border-bottom:1px solid #ffffff10;font-size:12px
+}
+.metricline:last-child{border:0}
+.metricline strong{direction:ltr;text-align:left}
+.big-total{font-size:27px;font-weight:900;color:var(--accent);margin-top:5px}
+
+.pill{
+ display:inline-block;padding:5px 10px;border-radius:30px;
+ background:#203b50;color:#b8eaff;font-size:10px;font-weight:800;
+ white-space:nowrap
+}
+.pill.green{background:#123e36;color:#8cf2c4}
+.pill.red{background:#4c2635;color:#ffacba}
+.pill.yellow{background:#4b3b21;color:#ffdf9a}
+.pill.blue{background:#173a58;color:#8dcfff}
+
+.table-wrap{
+ width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch
+}
+table{width:100%;border-collapse:collapse;min-width:570px}
+th,td{
+ padding:12px 9px;border-bottom:1px solid #ffffff10;
+ text-align:right;font-size:12px;white-space:nowrap
+}
+th{color:#a8c0d7;background:#0d1b2b;font-weight:800}
+td{color:#e4eef9}
+.empty{text-align:center;color:var(--muted);padding:25px;font-size:12px}
+.row-actions{display:flex;gap:5px;align-items:center}
+.row-actions button{white-space:nowrap}
+.search-row{display:grid;grid-template-columns:1.5fr 1fr;gap:9px;margin-bottom:12px}
+
+.page{display:none;animation:appear .25s ease}
+.page.active{display:block}
+@keyframes appear{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.quick-btn{
+ background:#172c42;border:1px solid var(--line);
+ border-radius:16px;padding:13px 5px;color:var(--text);
+ text-align:center;min-width:0
+}
+.quick-btn b{display:block;font-size:22px;margin-bottom:5px}
+.quick-btn span{font-size:10px;font-weight:700}
+
+.mobile-nav{
+ position:fixed;bottom:0;right:0;left:0;z-index:50;
+ display:flex;justify-content:space-around;align-items:center;
+ background:#0b1728f5;border-top:1px solid #30465d;
+ padding:8px 3px calc(8px + env(safe-area-inset-bottom));
+ backdrop-filter:blur(18px);box-shadow:0 -8px 25px #0005
+}
+.mobile-nav button{
+ flex:1;min-width:0;background:transparent;border:0;
+ color:#8299b2;font-family:inherit;
+ display:grid;justify-items:center;gap:2px;
+ min-height:49px;font-size:10px;font-weight:700
+}
+.mobile-nav button b{font-size:21px;line-height:1.3}
+.mobile-nav button.active{color:var(--accent)}
+.mobile-nav button.active b{filter:drop-shadow(0 0 6px #54e0b580)}
+
+.toast{
+ position:fixed;z-index:100;bottom:90px;left:50%;
+ transform:translate(-50%,15px);opacity:0;
+ background:#dffcf0;color:#073b2b;
+ padding:11px 18px;border-radius:13px;
+ font-size:12px;font-weight:900;pointer-events:none;
+ transition:.25s;max-width:90%;text-align:center;
+ box-shadow:var(--shadow)
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.footer{text-align:center;padding:18px 5px;color:#71869e;font-size:10px}
+
+body.light{
+ --bg:#edf3f8;--surface:#fff;--surface2:#f3f7fb;
+ --card:#fff;--line:#d7e1ec;--text:#172a40;--muted:#63778d;
+ background:#edf3f8;color:var(--text)
+}
+body.light .panel,body.light .stat,body.light .sidebar{background:#fff}
+body.light .field input,body.light .field select,body.light .field textarea,body.light .search{
+ background:#f6f9fc;color:#172a40;border-color:#d7e1ec
+}
+body.light .mobile-nav{background:#ffffffed;border-color:#d7e1ec}
+body.light th{background:#f3f7fb;color:#536b83}
+body.light td{color:#233a52}
+body.light .quick-btn{background:#fff;color:#172a40}
+body.light .hero{color:white}
+body.light .icon-btn{background:white;color:#172a40}
+body.light .btn{background:#f3f7fb;color:#172a40}
+body.light .btn.primary{background:linear-gradient(110deg,#52dfa9,#43b9e8);color:#062b30}
+body.light .btn.danger{background:#fff0f2;color:#b4233d}
+body.light .target-caption{color:var(--muted)}
+
+@media(min-width:700px){
+ .app{padding:22px}
+ .stats{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .mobile-nav{max-width:700px;left:50%;right:auto;transform:translateX(-50%);border-radius:18px 18px 0 0}
+ .hero{padding:28px}
+ .hero h2{font-size:27px}
+}
+@media(max-width:420px){
+ .app{padding:10px 10px 105px}
+ .brand h1{font-size:15px}
+ .logo{width:43px;height:43px}
+ .top-actions .icon-btn{width:39px;height:39px}
+ .hero{padding:19px 15px}
+ .hero h2{font-size:21px}
+ .stat{padding:12px}
+ .stat-value{font-size:21px}
+ .panel{padding:13px}
+ .quick-grid{gap:7px}
+ .quick-btn{padding:11px 3px}
+ .quick-btn b{font-size:20px}
+ .quick-btn span{font-size:9px}
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<header class="topbar">
+ <div class="brand">
+  <div class="logo">U</div>
+  <div>
+   <h1>Ultimate Sales Hub <span style="color:#54e0b5">ELITE</span></h1>
+   <p>Smart Sales & Finance Management</p>
+   <div class="status-line"><span class="dot"></span> النظام يعمل بشكل طبيعي</div>
+  </div>
+ </div>
+ <div class="top-actions">
+  <button class="icon-btn" id="themeBtn" title="تغيير المظهر">◐</button>
+  <button class="icon-btn" id="quickBackup" title="نسخة احتياطية">⬇</button>
+ </div>
+</header>
+
+<!-- الرئيسية -->
+<section class="page active" id="page-home">
+ <div class="hero">
+  <div class="hero-content">
+   <h2>أهلاً بك في مركز مبيعاتك 🚀</h2>
+   <p>كل أرقامك وعملائك وأهدافك في مكان واحد.<br>تابع أداءك وخليك دايماً سابق بخطوة.</p>
+   <div class="hero-bottom">
+    <span class="date-chip" id="todayLabel">اليوم</span>
+    <span class="hero-tag">● ELITE EDITION</span>
+   </div>
+  </div>
+  <div class="hero-icon">📈</div>
+ </div>
+
+ <div class="section-title">
+  <h2>نظرة عامة</h2><small>ملخص نشاطك</small>
+ </div>
+
+ <div class="stats">
+  <div class="stat">
+   <div class="stat-top"><span class="stat-icon">👥</span><span class="pill blue">CRM</span></div>
+   <div class="stat-label">إجمالي العملاء</div>
+   <div class="stat-value" id="sCustomers">0</div>
+   <div class="stat-hint">كل العملاء المسجلين</div>
+  </div>
+  <div class="stat">
+   <div class="stat-top"><span class="stat-icon">✅</span><span class="pill green">Active</span></div>
+   <div class="stat-label">العملاء المفعّلون</div>
+   <div class="stat-value" id="sActive">0</div>
+   <div class="stat-hint">تم تفعيلهم</div>
+  </div>
+  <div class="stat">
+   <div class="stat-top"><span class="stat-icon">💰</span><span class="pill blue">EGP</span></div>
+   <div class="stat-label">إجمالي التمويل</div>
+   <div class="stat-value" id="sLimits">0</div>
+   <div class="stat-hint">جنيه مصري</div>
+  </div>
+  <div class="stat">
+   <div class="stat-top"><span class="stat-icon">⏰</span><span class="pill yellow">Follow up</span></div>
+   <div class="stat-label">متابعات مستحقة</div>
+   <div class="stat-value" id="sFollow">0</div>
+   <div class="stat-hint">تحتاج إلى تواصل</div>
+  </div>
+ </div>
+
+ <div class="section-title"><h2>🎯 التارجت الشهري</h2><small>متابعة الإنجاز</small></div>
+ <div class="panel">
+  <div class="target-numbers">
+   <span>نسبة تحقيق الهدف</span>
+   <strong id="targetPercent">0%</strong>
+  </div>
+  <div class="progress"><span id="targetBar"></span></div>
+  <div class="target-numbers">
+   <span id="targetCaption">0 من 80 عقد</span>
+   <span id="targetRemaining" class="muted">متبقي 80</span>
+  </div>
+  <div class="formgrid" style="margin-top:15px">
+   <div class="field"><label>التارجت (عدد العقود)</label><input id="targetInput" type="number" min="0" value="80"></div>
+   <div class="field"><label>المنجز (عدد العقود)</label><input id="achievedInput" type="number" min="0" value="0"></div>
+  </div>
+  <div class="muted">يتم حفظ التارجت والإنجاز تلقائياً على جهازك.</div>
+ </div>
+
+ <div class="section-title"><h2>⚡ اختصارات سريعة</h2><small>وصول أسرع</small></div>
+ <div class="quick-grid">
+  <button class="quick-btn" data-go="crm"><b>👥</b><span>إضافة عميل</span></button>
+  <button class="quick-btn" data-go="calculator"><b>🧮</b><span>الحاسبة</span></button>
+  <button class="quick-btn" data-go="daily"><b>📊</b><span>تقرير يومي</span></button>
+  <button class="quick-btn" data-go="contracts"><b>📦</b><span>تسليم عقود</span></button>
+ </div>
+
+ <div class="section-title"><h2>ملخص سريع</h2><small>مباشر</small></div>
+ <div class="panel">
+  <div class="metricline"><span>عملاء قيد المتابعة</span><strong id="pendingCount">0</strong></div>
+  <div class="metricline"><span>إجمالي العقود المسلّمة</span><strong id="contractsCount">0</strong></div>
+  <div class="metricline"><span>متوسط مبلغ العميل</span><strong id="averageLimit">0</strong></div>
+ </div>
+
+ <div class="section-title"><h2>🕘 أحدث العملاء</h2><button class="btn small" data-go="crm">عرض الكل ←</button></div>
+ <div class="panel">
+  <div class="table-wrap">
+   <table><thead><tr><th>العميل</th><th>المبلغ</th><th>الحالة</th><th>التاريخ</th></tr></thead>
+   <tbody id="recentRows"></tbody></table>
+  </div>
+ </div>
+</section>
+
+<!-- العملاء -->
+<section class="page" id="page-crm">
+ <div class="hero">
+  <div class="hero-content"><h2>إدارة العملاء CRM 👥</h2><p>كل عميل له ملف وحالة ومتابعة واضحة.</p></div>
+  <div class="hero-icon">🤝</div>
+ </div>
+
+ <div class="panel">
+  <div class="panel-head"><h3 id="customerFormTitle">＋ إضافة عميل جديد</h3><span class="pill green">New Client</span></div>
+  <form id="customerForm">
+   <input type="hidden" id="editCustomerId">
+   <div class="formgrid">
+    <div class="field"><label>اسم العميل *</label><input id="cName" required placeholder="اسم العميل"></div>
+    <div class="field"><label>رقم الهاتف *</label><input id="cPhone" required inputmode="tel" placeholder="01xxxxxxxxx"></div>
+    <div class="field"><label>مبلغ التمويل (جنيه)</label><input id="cAmount" type="number" min="0" placeholder="150000"></div>
+    <div class="field"><label>تاريخ المتابعة</label><input id="cFollow" type="date"></div>
+    <div class="field"><label>حالة العميل</label>
+     <select id="cStatus">
+      <option>جديد</option><option>قيد المتابعة</option><option>مفعّل</option>
+      <option>مرفوض</option><option>لا يرد</option><option>غير مهتم</option>
+     </select>
+    </div>
+    <div class="field"><label>ملاحظات</label><input id="cNotes" placeholder="الأوراق أو تفاصيل المتابعة"></div>
+   </div>
+   <div class="actions">
+    <button class="btn primary" type="submit" id="customerSaveBtn">＋ حفظ العميل</button>
+    <button class="btn ghost" type="button" id="customerCancelEdit" hidden>إلغاء التعديل</button>
+    <button class="btn" type="reset">مسح الحقول</button>
+   </div>
+  </form>
+ </div>
+
+ <div class="panel">
+  <div class="panel-head"><h3>قائمة العملاء</h3><span class="pill blue" id="crmCount">0 عميل</span></div>
+  <div class="search-row">
+   <input class="search" id="crmSearch" placeholder="🔎 بحث بالاسم أو الهاتف">
+   <select class="search" id="statusFilter">
+    <option value="">كل الحالات</option><option>جديد</option><option>قيد المتابعة</option>
+    <option>مفعّل</option><option>مرفوض</option><option>لا يرد</option><option>غير مهتم</option>
+   </select>
+  </div>
+  <div class="table-wrap">
+   <table>
+    <thead><tr><th>العميل</th><th>الهاتف</th><th>التمويل</th><th>المتابعة</th><th>الحالة</th><th>الإجراءات</th></tr></thead>
+    <tbody id="crmRows"></tbody>
+   </table>
+  </div>
+ </div>
+</section>
+
+<!-- الحاسبة -->
+<section class="page" id="page-calculator">
+ <div class="hero"><div class="hero-content"><h2>حاسبة العمولة الذكية 🧮</h2><p>احسب قيمة العقود والبونص والضريبة وصافي العمولة.</p></div><div class="hero-icon">💎</div></div>
+ <div class="grid2">
+  <div class="panel">
+   <div class="panel-head"><h3>مدخلات الحساب</h3><span class="pill blue">Calculator</span></div>
+   <div class="field"><label>التارجت (عدد العقود)</label><input id="calcTarget" type="number" min="1" value="80"></div>
+   <div class="field"><label>عدد العقود المنجزة</label><input id="calcDone" type="number" min="0" value="64"></div>
+   <div class="field"><label>الليميت المحقق (جنيه)</label><input id="calcLimit" type="number" min="0" value="1350000"></div>
+   <div class="muted">شرائح سعر العقد: 100% = 60 جنيه، 90% = 40 جنيه، 80% = 25 جنيه، أقل من ذلك = صفر. البونص لكل مليون = 1600 جنيه. الضريبة = 11%.</div>
+   <div class="actions"><button class="btn primary" id="calcReset">إعادة ضبط</button><button class="btn" id="calcCopy">نسخ النتيجة</button></div>
+  </div>
+  <div class="panel">
+   <div class="panel-head"><h3>النتيجة التقديرية</h3><span class="pill green">Live</span></div>
+   <div class="metricline"><span>نسبة التارجت</span><strong id="rPercent">0%</strong></div>
+   <div class="metricline"><span>سعر العقد</span><strong id="rPrice">0 ج.م</strong></div>
+   <div class="metricline"><span>إجمالي العقود</span><strong id="rContracts">0 ج.م</strong></div>
+   <div class="metricline"><span>البونص</span><strong id="rBonus">0 ج.م</strong></div>
+   <div class="metricline"><span>الضريبة 11%</span><strong id="rTax">0 ج.م</strong></div>
+   <div class="metricline"><span>قبل الضريبة</span><strong id="rBefore">0 ج.م</strong></div>
+   <div style="padding-top:15px"><div class="muted">صافي العمولة بعد الضريبة</div><div class="big-total" id="rFinal">0 ج.م</div></div>
+  </div>
+ </div>
+</section>
+
+<!-- التقرير اليومي -->
+<section class="page" id="page-daily">
+ <div class="hero"><div class="hero-content"><h2>التقرير اليومي 📊</h2><p>سجّل نشاطك اليومي واحتفظ بتاريخ أدائك.</p></div><div class="hero-icon">📅</div></div>
+ <div class="panel">
+  <div class="panel-head"><h3>إضافة تقرير جديد</h3><span class="pill green">Daily Report</span></div>
+  <form id="dailyForm">
+   <div class="formgrid">
+    <div class="field"><label>التاريخ</label><input id="dDate" type="date" required></div>
+    <div class="field"><label>عدد العملاء</label><input id="dClients" type="number" min="0" value="0"></div>
+    <div class="field"><label>الليميت (جنيه)</label><input id="dLimit" type="number" min="0" value="0"></div>
+   </div>
+   <div class="actions"><button class="btn primary" type="submit">حفظ التقرير</button><button class="btn" type="button" id="exportDaily">تصدير CSV</button></div>
+  </form>
+ </div>
+ <div class="panel">
+  <div class="panel-head"><h3>سجل الأداء</h3><span class="pill blue" id="dailyTotal">0 سجل</span></div>
+  <div class="table-wrap"><table><thead><tr><th>التاريخ</th><th>عدد العملاء</th><th>الليميت</th><th>الإجراء</th></tr></thead><tbody id="dailyRows"></tbody></table></div>
+ </div>
+</section>
+
+<!-- تسليم العقود -->
+<section class="page" id="page-contracts">
+ <div class="hero"><div class="hero-content"><h2>تسليم العقود 📦</h2><p>متابعة كل تسليمة وبوليصة وجهة الاستلام.</p></div><div class="hero-icon">🚚</div></div>
+ <div class="panel">
+  <div class="panel-head"><h3>تسجيل تسليمة جديدة</h3></div>
+  <form id="contractForm">
+   <div class="formgrid">
+    <div class="field"><label>عدد العقود</label><input id="kCount" type="number" min="1" value="1" required></div>
+    <div class="field"><label>تاريخ التسليم</label><input id="kDate" type="date" required></div>
+    <div class="field"><label>رقم البوليصة</label><input id="kWaybill" placeholder="رقم الأرسالية"></div>
+    <div class="field"><label>جهة الاستلام</label><input id="kReceiver" placeholder="مثال: أرامكس"></div>
+    <div class="field"><label>حالة التسليم</label><select id="kStatus"><option>تم التسليم</option><option>قيد الشحن</option><option>تحت المراجعة</option></select></div>
+    <div class="field"><label>ملاحظات</label><input id="kNotes" placeholder="ملاحظات إضافية"></div>
+   </div>
+   <button class="btn primary" type="submit">＋ تسجيل التسليمة</button>
+  </form>
+ </div>
+ <div class="panel">
+  <div class="panel-head"><h3>سجل التسليمات</h3></div>
+  <div class="table-wrap"><table><thead><tr><th>التاريخ</th><th>العقود</th><th>البوليصة</th><th>الاستلام</th><th>الحالة</th><th>إجراء</th></tr></thead><tbody id="contractRows"></tbody></table></div>
+ </div>
+</section>
+
+<!-- الفريق -->
+<section class="page" id="page-team">
+ <div class="hero"><div class="hero-content"><h2>إدارة الفريق 🧑‍💼</h2><p>نظّم أعضاء الفريق وأيام الإجازات.</p></div><div class="hero-icon">🤝</div></div>
+ <div class="panel">
+  <h3>إضافة عضو للفريق</h3>
+  <form id="teamForm">
+   <div class="formgrid">
+    <div class="field"><label>اسم الموظف</label><input id="tName" required placeholder="اسم الموظف"></div>
+    <div class="field"><label>يوم الإجازة</label>
+     <select id="tOff"><option>الجمعة</option><option>السبت</option><option>الأحد</option><option>الإثنين</option><option>الثلاثاء</option><option>الأربعاء</option><option>الخميس</option><option>متغير</option></select>
+    </div>
+   </div>
+   <button class="btn primary" type="submit">＋ إضافة عضو</button>
+  </form>
+ </div>
+ <div class="panel">
+  <h3 style="margin:0 0 12px">جدول الفريق</h3>
+  <div class="table-wrap"><table><thead><tr><th>الموظف</th><th>يوم الإجازة</th><th>الإجراء</th></tr></thead><tbody id="teamRows"></tbody></table></div>
+ </div>
+</section>
+
+<!-- الإعدادات -->
+<section class="page" id="page-settings">
+ <div class="hero"><div class="hero-content"><h2>الإعدادات ⚙️</h2><p>تحكم في بياناتك ونسخك الاحتياطية.</p></div><div class="hero-icon">🛡️</div></div>
+ <div class="panel">
+  <h3>النسخ الاحتياطي والاستعادة</h3>
+  <p class="muted">احفظ نسخة من العملاء والتقارير والعقود والفريق والإعدادات لنقلها إلى جهاز آخر.</p>
+  <div class="actions">
+   <button class="btn primary" id="backupBtn">⬇ تصدير نسخة احتياطية</button>
+   <label class="btn" for="restoreFile">⬆ استعادة نسخة</label>
+   <input id="restoreFile" type="file" accept=".json,application/json" hidden>
+  </div>
+ </div>
+ <div class="panel">
+  <h3>إدارة البيانات</h3>
+  <p class="muted">مسح البيانات يحذف السجلات من هذا الجهاز فقط. أنشئ نسخة احتياطية قبل التنفيذ.</p>
+  <button class="btn danger" id="clearBtn">مسح جميع البيانات</button>
+ </div>
+ <div class="panel">
+  <h3>حول التطبيق</h3>
+  <div class="metricline"><span>اسم التطبيق</span><strong>Ultimate Sales Hub</strong></div>
+  <div class="metricline"><span>الإصدار</span><strong>ELITE 3.0</strong></div>
+  <div class="metricline"><span>التخزين</span><strong>Local Storage</strong></div>
+  <div class="metricline"><span>اللغة</span><strong>Arabic RTL</strong></div>
+ </div>
+</section>
+
+<div class="footer">ULTIMATE SALES HUB ELITE · Built for smarter sales</div>
+</div>
+
+<nav class="mobile-nav" id="mobileNav">
+ <button class="active" data-page="home"><b>⌂</b>الرئيسية</button>
+ <button data-page="crm"><b>👥</b>العملاء</button>
+ <button data-page="calculator"><b>🧮</b>الحاسبة</button>
+ <button data-page="daily"><b>📊</b>التقارير</button>
+ <button data-page="settings"><b>☰</b>المزيد</button>
+</nav>
+
+<div class="toast" id="toast"></div>
+<script>
+'use strict';
+
+/* =========================================
+   ULTIMATE SALES HUB ELITE
+   CORE ENGINE
+========================================= */
+
+const $ = id => document.getElementById(id);
+const KEY = 'ush_pro_v2';
+
+const fresh = () => ({
+ customers:[],
+ daily:[],
+ contracts:[],
+ team:[],
+ target:80,
+ achieved:0,
+ theme:'dark'
+});
+
+let db = load();
+
+function load(){
+ try{
+  const saved = JSON.parse(localStorage.getItem(KEY)||'{}');
+  return {...fresh(),...saved,
+   customers:Array.isArray(saved.customers)?saved.customers:[],
+   daily:Array.isArray(saved.daily)?saved.daily:[],
+   contracts:Array.isArray(saved.contracts)?saved.contracts:[],
+   team:Array.isArray(saved.team)?saved.team:[]
+  };
+ }catch(e){
+  return fresh();
+ }
+}
+
+function save(){
+ try{
+  localStorage.setItem(KEY,JSON.stringify(db));
+  return true;
+ }catch(e){
+  toast('مساحة التخزين غير كافية');
+  return false;
+ }
+}
+
+function uid(){
+ return Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+}
+
+function esc(value){
+ return String(value??'').replace(/[&<>"']/g,c=>({
+  '&':'&amp;','<':'&lt;','>':'&gt;',
+  '"':'&quot;',"'":'&#39;'
+ }[c]));
+}
+
+function money(value){
+ return (Number(value)||0).toLocaleString('en-US',{
+  maximumFractionDigits:0
+ });
+}
+
+function today(){
+ const d=new Date();
+ return [
+  d.getFullYear(),
+  String(d.getMonth()+1).padStart(2,'0'),
+  String(d.getDate()).padStart(2,'0')
+ ].join('-');
+}
+
+function toast(message){
+ const t=$('toast');
+ t.textContent=message;
+ t.classList.add('show');
+ clearTimeout(window._toastTimer);
+ window._toastTimer=setTimeout(()=>t.classList.remove('show'),2400);
+}
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+function go(page){
+ const allowed=['home','crm','calculator','daily','contracts','team','settings'];
+ if(!allowed.includes(page))return;
+
+ document.querySelectorAll('.page').forEach(p=>{
+  p.classList.toggle('active',p.id==='page-'+page);
+ });
+
+ document.querySelectorAll('[data-page]').forEach(b=>{
+  b.classList.toggle('active',b.dataset.page===page);
+ });
+
+ window.scrollTo({top:0,behavior:'smooth'});
+
+ if(page==='crm')renderCRM();
+ if(page==='calculator')calc();
+ if(page==='daily')renderDaily();
+ if(page==='contracts')renderContracts();
+ if(page==='team')renderTeam();
+ if(page==='home')renderHome();
+}
+
+document.querySelectorAll('[data-page]').forEach(b=>{
+ b.addEventListener('click',()=>go(b.dataset.page));
+});
+
+document.querySelectorAll('[data-go]').forEach(b=>{
+ b.addEventListener('click',()=>go(b.dataset.go));
+});
+
+/* =========================================
+   THEME
+========================================= */
+
+function applyTheme(){
+ document.body.classList.toggle('light',db.theme==='light');
+}
+
+$('themeBtn').addEventListener('click',()=>{
+ db.theme=db.theme==='light'?'dark':'light';
+ save();
+ applyTheme();
+ toast(db.theme==='light'?'تم تفعيل الوضع النهاري':'تم تفعيل الوضع الليلي');
+});
+
+/* =========================================
+   STATUS COLORS
+========================================= */
+
+function badge(status){
+ let cls='blue';
+
+ if(status==='مفعّل'||status==='تم التسليم'){
+  cls='green';
+ }else if(status==='مرفوض'){
+  cls='red';
+ }else if(status==='قيد المتابعة'||status==='قيد الشحن'||status==='تحت المراجعة'){
+  cls='yellow';
+ }
+
+ return `<span class="pill ${cls}">${esc(status)}</span>`;
+}
+
+/* =========================================
+   DASHBOARD
+========================================= */
+
+function renderHome(){
+
+ const customers=db.customers;
+ const active=customers.filter(c=>c.status==='مفعّل');
+ const sum=customers.reduce((a,c)=>a+(Number(c.amount)||0),0);
+
+ const follow=customers.filter(c=>
+  c.follow &&
+  c.follow<=today() &&
+  c.status!=='مفعّل' &&
+  c.status!=='مرفوض' &&
+  c.status!=='غير مهتم'
+ );
+
+ const pending=customers.filter(c=>
+  c.status==='جديد'||c.status==='قيد المتابعة'
+ );
+
+ const contractCount=db.contracts.reduce(
+  (a,c)=>a+(Number(c.count)||0),0
+ );
+
+ $('sCustomers').textContent=money(customers.length);
+ $('sActive').textContent=money(active.length);
+ $('sLimits').textContent=money(sum);
+ $('sFollow').textContent=money(follow.length);
+
+ $('pendingCount').textContent=money(pending.length);
+ $('contractsCount').textContent=money(contractCount);
+ $('averageLimit').textContent=money(
+  customers.length?sum/customers.length:0
+ );
+
+ $('todayLabel').textContent=new Date().toLocaleDateString('ar-EG',{
+  weekday:'long',year:'numeric',month:'long',day:'numeric'
+ });
+
+ const recent=[...customers].reverse().slice(0,5);
+
+ $('recentRows').innerHTML=recent.length?
+  recent.map(c=>`
+   <tr>
+    <td><b>${esc(c.name)}</b></td>
+    <td>${money(c.amount)} ج</td>
+    <td>${badge(c.status)}</td>
+    <td>${esc(c.created||'—')}</td>
+   </tr>
+  `).join(''):
+  `<tr><td colspan="4" class="empty">لا يوجد عملاء حتى الآن</td></tr>`;
+
+ renderTarget();
+}
+
+function renderTarget(){
+
+ const target=Math.max(0,Number(db.target)||0);
+ const achieved=Math.max(0,Number(db.achieved)||0);
+ const percent=target?achieved/target*100:0;
+ const visual=Math.min(100,percent);
+
+ $('targetPercent').textContent=percent.toFixed(1)+'%';
+ $('targetBar').style.width=visual+'%';
+ $('targetCaption').textContent=`${money(achieved)} من ${money(target)} عقد`;
+ $('targetRemaining').textContent=
+  achieved>=target?'تم تحقيق التارجت 🎉':
+  'متبقي '+money(target-achieved)+' عقد';
+}
+
+['targetInput','achievedInput'].forEach(id=>{
+ $(id).addEventListener('input',()=>{
+  db.target=Math.max(0,Number($('targetInput').value)||0);
+  db.achieved=Math.max(0,Number($('achievedInput').value)||0);
+  save();
+  renderTarget();
+ });
+});
+
+/* =========================================
+   CUSTOMER CRM
+========================================= */
+
+function resetCustomerForm(){
+ $('customerForm').reset();
+ $('editCustomerId').value='';
+ $('customerFormTitle').textContent='＋ إضافة عميل جديد';
+ $('customerSaveBtn').textContent='＋ حفظ العميل';
+ $('customerCancelEdit').hidden=true;
+}
+
+$('customerForm').addEventListener('reset',()=>{
+ setTimeout(()=>{
+  if(!$('editCustomerId').value){
+   $('customerFormTitle').textContent='＋ إضافة عميل جديد';
+   $('customerSaveBtn').textContent='＋ حفظ العميل';
+   $('customerCancelEdit').hidden=true;
+  }
+ },0);
+});
+
+$('customerCancelEdit').addEventListener('click',resetCustomerForm);
+
+$('customerForm').addEventListener('submit',e=>{
+ e.preventDefault();
+
+ const name=$('cName').value.trim();
+ const phone=$('cPhone').value.trim();
+ const amount=Number($('cAmount').value)||0;
+ const editId=$('editCustomerId').value;
+
+ if(!name||!phone){
+  toast('أدخل اسم العميل ورقم الهاتف');
+  return;
+ }
+
+ if(amount<0){
+  toast('المبلغ غير صحيح');
+  return;
+ }
+
+ if(editId){
+
+  const customer=db.customers.find(c=>c.id===editId);
+
+  if(!customer){
+   toast('تعذر العثور على العميل');
+   resetCustomerForm();
+   return;
+  }
+
+  Object.assign(customer,{
+   name,
+   phone,
+   amount,
+   follow:$('cFollow').value,
+   status:$('cStatus').value,
+   notes:$('cNotes').value.trim()
+  });
+
+  resetCustomerForm();
+  save();
+  renderAll();
+  toast('تم تحديث بيانات العميل بنجاح');
+
+ }else{
+
+  db.customers.push({
+   id:uid(),
+   name,
+   phone,
+   amount,
+   follow:$('cFollow').value,
+   status:$('cStatus').value,
+   notes:$('cNotes').value.trim(),
+   created:today()
+  });
+
+  resetCustomerForm();
+  save();
+  renderAll();
+  toast('تم إضافة العميل بنجاح');
+ }
+});
+
+function renderCRM(){
+
+ const query=$('crmSearch').value.trim().toLowerCase();
+ const filter=$('statusFilter').value;
+
+ const list=db.customers.filter(c=>{
+  const matchesStatus=!filter||c.status===filter;
+  const text=(c.name+' '+c.phone+' '+(c.notes||'')).toLowerCase();
+  return matchesStatus&&text.includes(query);
+ });
+
+ $('crmCount').textContent=list.length+' عميل';
+
+ $('crmRows').innerHTML=list.length?
+ list.map(c=>`
+  <tr>
+   <td>
+    <b>${esc(c.name)}</b>
+    <div class="muted">${esc(c.notes||'')}</div>
+   </td>
+   <td dir="ltr">${esc(c.phone)}</td>
+   <td>${money(c.amount)} ج</td>
+   <td>${esc(c.follow||'—')}</td>
+   <td>
+    <select aria-label="حالة العميل" data-action="status" data-id="${esc(c.id)}"
+     style="max-width:125px;padding:7px;background:#102239;color:inherit;border:1px solid #30465d;border-radius:9px">
+     ${['جديد','قيد المتابعة','مفعّل','مرفوض','لا يرد','غير مهتم'].map(s=>
+      `<option ${c.status===s?'selected':''}>${s}</option>`
+     ).join('')}
+    </select>
+   </td>
+   <td>
+    <div class="row-actions">
+     <button class="btn small" data-action="call" data-id="${esc(c.id)}">اتصال</button>
+     <button class="btn small" data-action="wa" data-id="${esc(c.id)}">واتساب</button>
+     <button class="btn small" data-action="edit" data-id="${esc(c.id)}">تعديل</button>
+     <button class="btn small danger" data-action="delete-customer" data-id="${esc(c.id)}">حذف</button>
+    </div>
+   </td>
+  </tr>
+ `).join(''):
+ `<tr><td colspan="6" class="empty">لا توجد نتائج مطابقة للبحث</td></tr>`;
+}
+
+$('crmSearch').addEventListener('input',renderCRM);
+$('statusFilter').addEventListener('change',renderCRM);
+
+$('crmRows').addEventListener('change',e=>{
+ const select=e.target.closest('[data-action="status"]');
+ if(!select)return;
+
+ const c=db.customers.find(x=>x.id===select.dataset.id);
+ if(!c)return;
+
+ c.status=select.value;
+ save();
+ renderAll();
+ toast('تم تحديث حالة العميل');
+});
+
+$('crmRows').addEventListener('click',e=>{
+ const btn=e.target.closest('[data-action]');
+ if(!btn)return;
+
+ const id=btn.dataset.id;
+ const action=btn.dataset.action;
+ const c=db.customers.find(x=>x.id===id);
+
+ if(!c)return;
+
+ if(action==='edit'){
+  $('editCustomerId').value=c.id;
+  $('cName').value=c.name;
+  $('cPhone').value=c.phone;
+  $('cAmount').value=c.amount||0;
+  $('cFollow').value=c.follow||'';
+  $('cStatus').value=c.status||'جديد';
+  $('cNotes').value=c.notes||'';
+
+  $('customerFormTitle').textContent='✏️ تعديل بيانات العميل';
+  $('customerSaveBtn').textContent='حفظ التعديلات';
+  $('customerCancelEdit').hidden=false;
+
+  $('customerForm').scrollIntoView({behavior:'smooth',block:'start'});
+ }
+
+ if(action==='call'){
+  location.href='tel:'+c.phone;
+ }
+
+ if(action==='wa'){
+  const phone=normalizePhone(c.phone);
+  if(!phone){
+   toast('رقم الهاتف غير صالح');
+   return;
+  }
+  window.open('https://wa.me/'+phone,'_blank');
+ }
+
+ if(action==='delete-customer'){
+  if(!confirm('هل تريد حذف العميل '+c.name+'؟'))return;
+
+  db.customers=db.customers.filter(x=>x.id!==id);
+  save();
+  renderAll();
+  toast('تم حذف العميل');
+ }
+});
+
+function normalizePhone(phone){
+ let p=String(phone||'').replace(/\D/g,'');
+
+ if(p.startsWith('00'))p=p.slice(2);
+ if(p.startsWith('01')&&p.length===11)p='2'+p;
+ if(p.startsWith('20')&&p.length===12)return p;
+
+ return p.length>=10?p:'';
+}
+
+/* =========================================
+   COMMISSION CALCULATOR
+========================================= */
+
+function calc(){
+
+ const target=Math.max(0,Number($('calcTarget').value)||0);
+ const done=Math.max(0,Number($('calcDone').value)||0);
+ const limit=Math.max(0,Number($('calcLimit').value)||0);
+
+ const percent=target?done/target*100:0;
+
+ let price=0;
+
+ if(percent>=100)price=60;
+ else if(percent>=90)price=40;
+ else if(percent>=80)price=25;
+
+ const contracts=done*price;
+ const bonus=limit/1000000*1600;
+ const before=contracts+bonus;
+ const tax=before*.11;
+ const final=before-tax;
+
+ const result={
+  percent,price,contracts,bonus,before,tax,final
+ };
+
+ $('rPercent').textContent=percent.toFixed(1)+'%';
+ $('rPrice').textContent=money(price)+' ج.م';
+ $('rContracts').textContent=money(contracts)+' ج.م';
+ $('rBonus').textContent=money(bonus)+' ج.م';
+ $('rTax').textContent=money(tax)+' ج.م';
+ $('rBefore').textContent=money(before)+' ج.م';
+ $('rFinal').textContent=money(final)+' ج.م';
+
+ return result;
+}
+
+['calcTarget','calcDone','calcLimit'].forEach(id=>{
+ $(id).addEventListener('input',calc);
+});
+
+$('calcReset').addEventListener('click',()=>{
+ $('calcTarget').value=80;
+ $('calcDone').value=64;
+ $('calcLimit').value=1350000;
+ calc();
+ toast('تمت إعادة ضبط الحاسبة');
+});
+
+$('calcCopy').addEventListener('click',async()=>{
+ const r=calc();
+
+ const text=
+ `نسبة التارجت: ${r.percent.toFixed(1)}%
+سعر العقد: ${r.price}
+إجمالي العقود: ${money(r.contracts)}
+البونص: ${money(r.bonus)}
+الضريبة: ${money(r.tax)}
+صافي العمولة: ${money(r.final)} جنيه`;
+
+ try{
+  if(navigator.clipboard&&window.isSecureContext){
+   await navigator.clipboard.writeText(text);
+  }else{
+   const input=document.createElement('textarea');
+   input.value=text;
+   document.body.appendChild(input);
+   input.select();
+   document.execCommand('copy');
+   input.remove();
+  }
+  toast('تم نسخ نتيجة الحساب');
+ }catch(e){
+  toast('تعذر النسخ من المتصفح');
+ }
+});
+
+/* =========================================
+   DAILY REPORTS
+========================================= */
+
+$('dailyForm').addEventListener('submit',e=>{
+ e.preventDefault();
+
+ const date=$('dDate').value;
+ const clients=Number($('dClients').value)||0;
+ const limit=Number($('dLimit').value)||0;
+
+ if(!date){
+  toast('اختر تاريخ التقرير');
+  return;
+ }
+
+ const existing=db.daily.find(x=>x.date===date);
+
+ if(existing){
+  if(!confirm('يوجد تقرير بنفس التاريخ. هل تريد استبداله؟'))return;
+  existing.clients=clients;
+  existing.limit=limit;
+ }else{
+  db.daily.push({id:uid(),date,clients,limit});
+ }
+
+ save();
+ renderAll();
+ toast('تم حفظ التقرير اليومي');
+});
+
+function renderDaily(){
+
+ const list=[...db.daily].sort((a,b)=>b.date.localeCompare(a.date));
+
+ $('dailyTotal').textContent=list.length+' سجل';
+
+ $('dailyRows').innerHTML=list.length?
+ list.map(d=>`
+  <tr>
+   <td>${esc(d.date)}</td>
+   <td>${money(d.clients)}</td>
+   <td>${money(d.limit)} ج</td>
+   <td><button class="btn small danger" data-action="delete-daily" data-id="${esc(d.id)}">حذف</button></td>
+  </tr>
+ `).join(''):
+ `<tr><td colspan="4" class="empty">لا توجد تقارير محفوظة</td></tr>`;
+}
+
+$('dailyRows').addEventListener('click',e=>{
+ const btn=e.target.closest('[data-action="delete-daily"]');
+ if(!btn)return;
+
+ if(!confirm('حذف التقرير؟'))return;
+
+ db.daily=db.daily.filter(x=>x.id!==btn.dataset.id);
+ save();
+ renderAll();
+ toast('تم حذف التقرير');
+});
+
+/* =========================================
+   CONTRACTS
+========================================= */
+
+$('contractForm').addEventListener('submit',e=>{
+ e.preventDefault();
+
+ const count=Number($('kCount').value)||0;
+ const date=$('kDate').value;
+
+ if(count<1||!date){
+  toast('أكمل بيانات التسليم');
+  return;
+ }
+
+ db.contracts.push({
+  id:uid(),
+  count,
+  date,
+  waybill:$('kWaybill').value.trim(),
+  receiver:$('kReceiver').value.trim(),
+  status:$('kStatus').value,
+  notes:$('kNotes').value.trim()
+ });
+
+ e.target.reset();
+ $('kCount').value=1;
+ $('kDate').value=today();
+
+ save();
+ renderAll();
+ toast('تم تسجيل التسليمة بنجاح');
+});
+
+function renderContracts(){
+
+ const list=[...db.contracts].reverse();
+
+ $('contractRows').innerHTML=list.length?
+ list.map(c=>`
+  <tr>
+   <td>${esc(c.date)}</td>
+   <td><b>${money(c.count)}</b></td>
+   <td>${esc(c.waybill||'—')}</td>
+   <td>${esc(c.receiver||'—')}</td>
+   <td>${badge(c.status)}</td>
+   <td><button class="btn small danger" data-action="delete-contract" data-id="${esc(c.id)}">حذف</button></td>
+  </tr>
+ `).join(''):
+ `<tr><td colspan="6" class="empty">لا توجد تسليمات مسجلة</td></tr>`;
+}
+
+$('contractRows').addEventListener('click',e=>{
+ const btn=e.target.closest('[data-action="delete-contract"]');
+ if(!btn)return;
+
+ if(!confirm('هل تريد حذف التسليمة؟'))return;
+
+ db.contracts=db.contracts.filter(x=>x.id!==btn.dataset.id);
+ save();
+ renderAll();
+ toast('تم حذف التسليمة');
+});
+
+/* =========================================
+   TEAM
+========================================= */
+
+$('teamForm').addEventListener('submit',e=>{
+ e.preventDefault();
+
+ const name=$('tName').value.trim();
+ const off=$('tOff').value;
+
+ if(!name){
+  toast('أدخل اسم الموظف');
+  return;
+ }
+
+ db.team.push({id:uid(),name,off});
+ e.target.reset();
+
+ save();
+ renderTeam();
+ toast('تمت إضافة عضو الفريق');
+});
+
+function renderTeam(){
+
+ $('teamRows').innerHTML=db.team.length?
+ db.team.map(t=>`
+  <tr>
+   <td><b>${esc(t.name)}</b></td>
+   <td>${esc(t.off)}</td>
+   <td><button class="btn small danger" data-action="delete-team" data-id="${esc(t.id)}">حذف</button></td>
+  </tr>
+ `).join(''):
+ `<tr><td colspan="3" class="empty">لم تتم إضافة أعضاء الفريق</td></tr>`;
+}
+
+$('teamRows').addEventListener('click',e=>{
+ const btn=e.target.closest('[data-action="delete-team"]');
+ if(!btn)return;
+
+ if(!confirm('حذف عضو الفريق؟'))return;
+
+ db.team=db.team.filter(x=>x.id!==btn.dataset.id);
+ save();
+ renderTeam();
+ toast('تم حذف العضو');
+});
+
+/* =========================================
+   DOWNLOAD HELPERS
+========================================= */
+
+function downloadFile(name,data,type){
+
+ const blob=new Blob([data],{type});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement('a');
+
+ a.href=url;
+ a.download=name;
+
+ document.body.appendChild(a);
+ a.click();
+ a.remove();
+
+ setTimeout(()=>URL.revokeObjectURL(url),2000);
+}
+
+function csv(rows){
+
+ return '\ufeff'+rows.map(row=>
+  row.map(value=>
+   '"'+String(value??'').replace(/"/g,'""')+'"'
+  ).join(',')
+ ).join('\r\n');
+}
+
+/* =========================================
+   BACKUP & RESTORE
+========================================= */
+
+function backup(){
+
+ const data={
+  app:'Ultimate Sales Hub',
+  version:3,
+  createdAt:new Date().toISOString(),
+  ...db
+ };
+
+ downloadFile(
+  'Ultimate_Sales_Hub_Backup_'+today()+'.json',
+  JSON.stringify(data,null,2),
+  'application/json'
+ );
+
+ toast('تم تجهيز النسخة الاحتياطية');
+}
+
+$('backupBtn').addEventListener('click',backup);
+$('quickBackup').addEventListener('click',backup);
+
+$('restoreFile').addEventListener('change',async e=>{
+
+ const file=e.target.files[0];
+ if(!file)return;
+
+ try{
+
+  const data=JSON.parse(await file.text());
+
+  if(!data||typeof data!=='object')throw Error();
+
+  const validArrays=['customers','daily','contracts','team'];
+
+  for(const key of validArrays){
+   if(data[key]!==undefined&&!Array.isArray(data[key])){
+    throw Error();
+   }
+  }
+
+  if(!confirm('سيتم استبدال بيانات التطبيق الحالية بالنسخة المختارة. هل تريد المتابعة؟')){
+   e.target.value='';
+   return;
+  }
+
+  db={
+   ...fresh(),
+   customers:data.customers||[],
+   daily:data.daily||[],
+   contracts:data.contracts||[],
+   team:data.team||[],
+   target:Number(data.target)||80,
+   achieved:Number(data.achieved)||0,
+   theme:data.theme==='light'?'light':'dark'
+  };
+
+  if(!save())throw Error();
+
+  applyTheme();
+  renderAll();
+  toast('تم استعادة البيانات بنجاح');
+
+ }catch(err){
+  alert('ملف النسخة الاحتياطية غير صالح أو لا يمكن قراءته');
+ }
+
+ e.target.value='';
+});
+
+/* =========================================
+   EXPORT DAILY CSV
+========================================= */
+
+$('exportDaily').addEventListener('click',()=>{
+
+ const rows=[
+  ['Date','Clients','Limit EGP'],
+  ...db.daily.map(d=>[d.date,d.clients,d.limit])
+ ];
+
+ downloadFile(
+  'Daily_Sales_Report_'+today()+'.csv',
+  csv(rows),
+  'text/csv;charset=utf-8'
+ );
+
+ toast('تم تصدير التقرير');
+});
+
+/* =========================================
+   CLEAR DATA
+========================================= */
+
+$('clearBtn').addEventListener('click',()=>{
+
+ const answer=confirm(
+  'تحذير: سيتم حذف جميع العملاء والتقارير والعقود والفريق من هذا الجهاز. هل أنت متأكد؟'
+ );
+
+ if(!answer)return;
+
+ db=fresh();
+
+ save();
+ resetCustomerForm();
+ applyTheme();
+ renderAll();
+
+ toast('تم مسح بيانات التطبيق');
+});
+
+/* =========================================
+   MASTER RENDER
+========================================= */
+
+function renderAll(){
+
+ $('targetInput').value=db.target;
+ $('achievedInput').value=db.achieved;
+
+ renderHome();
+ renderCRM();
+ renderDaily();
+ renderContracts();
+ renderTeam();
+ calc();
+}
+
+function initialize(){
+
+ $('dDate').value=today();
+ $('kDate').value=today();
+
+ applyTheme();
+
+ renderAll();
+
+ console.log('Ultimate Sales Hub Elite initialized');
+}
+
+initialize();
+
+</script>
+</body>
+</html>
